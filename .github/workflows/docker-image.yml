@@ -16,8 +16,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: docker login
       env:
-        DOCKER_USER: "sixtyfive0"
-        DOCKER_PASSWORD: "aKINLEYE1@"
+        DOCKER_USER: sixtyfive0
+        DOCKER_PASSWORD: aKINLEYE1@
       run: |
 # Docker build
     - name: Build docker feed image
@@ -30,19 +30,19 @@ jobs:
       run: docker build -t udagram-reverseproxy ./udagram-reverseproxy
 # Docker tags      
     - name: Docker tag feed
-      run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v2
+      run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v1
     - name: Docker tag user
-      run: docker tag udagram-api-user sixtyfive0/udagram-api-user:v2
+      run: docker tag udagram-api-user sixtyfive0/udagram-api-user:v1
     - name: Docker tag frontend  
-      run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v2
+      run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v1
     - name: Docker tag reverseproxy
-      run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v2
+      run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v1
 # Push
     - name: Docker push feed
-      run: docker push sixtyfive0/udagram-api-feed:v2
+      run: docker push sixtyfive0/udagram-api-feed:v1
     - name: push user
-      run: docker push sixtyfive0/udagram-api-user:v2
+      run: docker push sixtyfive0/udagram-api-user:v1
     - name: push frontend
-      run: docker push sixtyfive0/udagram-frontend:v2
+      run: docker push sixtyfive0/udagram-frontend:v1
     - name: push reverseproxy
-      run: docker push sixtyfive0/udagram-reverseproxy:v2
+      run: docker push sixtyfive0/udagram-reverseproxy:v1
