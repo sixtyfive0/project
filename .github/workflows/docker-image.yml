@@ -39,10 +39,10 @@ jobs:
       run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v1
 # Push
     - name: Docker push feed
-      run: docker push sixtyfive0/sixtyfive0/udagram-api-feed:v1
+      run: docker push sixtyfive0/udagram-api-feed:v1
     - name: push user
-      run: docker push sixtyfive0/sixtyfive0/udagram-api-user:v1
+      run: docker push sixtyfive0/udagram-api-user:v1
     - name: push frontend
-      run: docker push sixtyfive0/sixtyfive0/udagram-frontend:v1
+      run: docker push sixtyfive0/udagram-frontend:v1
     - name: push reverseproxy
-      run: docker push sixtyfive0/sixtyfive0/udagram-reverseproxy:v1
+      run: docker push sixtyfive0/udagram-reverseproxy:v1
