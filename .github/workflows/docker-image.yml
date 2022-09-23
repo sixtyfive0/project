@@ -1,48 +1,36 @@
-name: Docker Image CI
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [main]
+
+  workflow_dispatch:
 
 jobs:
-
-  build:
-
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: docker login
-      env:
-        DOCKER_USER: "sixtyfive0"
-        DOCKER_PASSWORD: "aKINLEYE1@"
-      run: |
-# Docker build
-    - name: Build docker feed image
-      run: docker build -t udagram-api-feed ./udagram-api-feed
-    - name: Build user
-      run: docker build -t udagram-api-user ./udagram-api-user
-    - name: Build frontend
-      run: docker build -t udagram-frontend ./udagram-frontend
-    - name: Build reverseproxy
-      run: docker build -t udagram-reverseproxy ./udagram-reverseproxy
-# Docker tags      
-    - name: Docker tag feed
-      run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v2
-    - name: Docker tag user
-      run: docker tag udagram-api-user sixtyfive0/udagram-api-user:v2
-    - name: Docker tag frontend  
-      run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v2
-    - name: Docker tag reverseproxy
-      run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v2
-# Push
-    - name: Docker push feed
-      run: docker push sixtyfive0/udagram-api-feed:v2
-    - name: push user
-      run: docker push sixtyfive0/udagram-api-user:v2
-    - name: push frontend
-      run: docker push sixtyfive0/udagram-frontend:v2
-    - name: push reverseproxy
-      run: docker push sixtyfive0/udagram-reverseproxy:v2
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/build-push-action@v3
+        with:
+          images: sixtyfive0/sixtyfive1
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
