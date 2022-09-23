@@ -9,9 +9,9 @@
 # Tagging
 - docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v1
 # Do similar for other three images
-- docker tag udagram-api-user sudkul/udagram-api-user:v1
-- docker tag udagram-frontend sudkul/udagram-frontend:v1
-- docker tag udagram-reverseproxy sudkul/udagram-reverseproxy:v1
+- docker tag udagram-api-user sixtyfive0/udagram-api-user:v1
+- docker tag udagram-frontend sixtyfive0/udagram-frontend:v1
+- docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v1
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
 - echo "akinleye1@" | docker login -u "sixtyfive0" --password-stdin
