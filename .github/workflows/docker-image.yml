@@ -37,12 +37,17 @@ jobs:
       run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v2
     - name: Docker tag reverseproxy
       run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v2
-# Push
-    - name: Docker push feed
-      run: docker push sixtyfive0/udagram-api-feed:v2
-    - name: push user
-      run: docker push sixtyfive0/udagram-api-user:v2
-    - name: push frontend
-      run: docker push sixtyfive0/udagram-frontend:v2
-    - name: push reverseproxy
-      run: docker push sixtyfive0/udagram-reverseproxy:v2
+      
+    - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+- name: Build and push user Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: sixtyfive0/udagram-api-feed:v2, sixtyfive0/udagram-api-user:v2, sixtyfive0/udagram-frontend:v2, sixtyfive0/udagram-reverseproxy:v2
+
