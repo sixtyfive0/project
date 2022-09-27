@@ -21,16 +21,6 @@ jobs:
         DOCKER_PASSWORD: "aKINLEYE1@"
       run: |
 
-    - name: Build docker feed image
-      run: docker build -t udagram-api-feed ./udagram-api-feed
-    - name: Build user
-      run: docker build -t udagram-api-user ./udagram-api-user
-    - name: Build frontend
-      run: docker build -t udagram-frontend ./udagram-frontend
-    - name: Build reverseproxy
-      run: docker build -t udagram-reverseproxy ./udagram-reverseproxy
- 
-
     - name: Build and push user Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
