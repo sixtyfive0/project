@@ -1,11 +1,5 @@
 name: Docker Image CI
 
-on:
-  push:
-    branches: [ "project" ]
-
-jobs:
-
   build:
       run: docker build -t udagram-api-feed ./udagram-api-feed
       run: docker build -t udagram-api-user ./udagram-api-user
@@ -19,6 +13,7 @@ jobs:
       run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v3
     - name: Docker tag reverseproxy
       run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v3
+      
   - name: docker login
         env:
         DOCKER_USER: "sixtyfive0"
