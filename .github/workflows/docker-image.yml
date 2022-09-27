@@ -15,11 +15,11 @@ jobs:
   steps:
     - uses: actions/checkout@v3
         
-    - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-        with:
-          username: sixtyfive0
-          password: aKINLEYE1@
+    - name: docker login
+      env:
+        DOCKER_USER: "sixtyfive0"
+        DOCKER_PASSWORD: "aKINLEYE1@"
+      run: |
 
     - name: Build docker feed image
       run: docker build -t udagram-api-feed ./udagram-api-feed
