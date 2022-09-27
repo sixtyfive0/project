@@ -10,7 +10,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-  steps:
       - name: docker login
         env:
         DOCKER_USER: "sixtyfive0"
