@@ -2,9 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "project" ]
 
 jobs:
 
@@ -26,21 +24,21 @@ jobs:
       run: docker build -t udagram-frontend ./udagram-frontend
       run: docker build -t udagram-reverseproxy ./udagram-reverseproxy
 - name: Docker tag feed
-      run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v1
+      run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v3
     - name: Docker tag user
-      run: docker tag udagram-api-user sixtyfive0/udagram-api-user:v1
+      run: docker tag udagram-api-user sixtyfive0/udagram-api-user:v3
     - name: Docker tag frontend  
-      run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v1
+      run: docker tag udagram-frontend sixtyfive0/udagram-frontend:v3
     - name: Docker tag reverseproxy
-      run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v1
+      run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v3
+#Push
     - name: Build and push Docker images
       uses: docker/build-push-action@v3.1.1
-    # Push
     - name: Docker push feed
-      run: docker push sixtyfive0/udagram-api-feed:v1
+      run: docker push sixtyfive0/udagram-api-feed:v3
     - name: push user
-      run: docker push sixtyfive0/udagram-api-user:v1
+      run: docker push sixtyfive0/udagram-api-user:v3
     - name: push frontend
-      run: docker push sixtyfive0/udagram-frontend:v1
+      run: docker push sixtyfive0/udagram-frontend:v3
     - name: push reverseproxy
-      run: docker push sixtyfive0/udagram-reverseproxy:v1
+      run: docker push sixtyfive0/udagram-reverseproxy:v3
