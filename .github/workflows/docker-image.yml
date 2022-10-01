@@ -7,13 +7,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
 
   steps:
     - uses: actions/checkout@v3
+    - run: docker-compose -f docker-compose-build.yaml build --parallel
+    - run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed
+    - run: docker tag udagram-api-user sixtyfive0/udagram-api-user
+    - run: docker tag udagram-frontend sixtyfive0/udagram-frontend
+    - run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy
         
     - name: docker login
       env:
