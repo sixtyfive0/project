@@ -14,21 +14,12 @@ jobs:
   steps:
     - uses: actions/checkout@v3
     - run: docker-compose -f docker-compose-build.yaml build --parallel
-    - run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed
-    - run: docker tag udagram-api-user sixtyfive0/udagram-api-user
-    - run: docker tag udagram-frontend sixtyfive0/udagram-frontend
-    - run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy
+    - run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v1
+    - run: docker tag udagram-api-user sixtyfive0/udagram-api-user:v1
+    - run: docker tag udagram-frontend:local sixtyfive0/udagram-frontend:v1
+    - run: docker tag udagram-reverseproxy sixtyfive0/udagram-reverseproxy:v1
+    - run: docker push sixtyfive0/udagram-api-feed:v1
+    - run: docker push sixtyfive0/udagram-api-user:v1
+    - run: docker push sixtyfive0/udagram-frontend:v1
+    - run: docker push sixtyfive0/udagram-reverseproxy:v1
         
-    - name: docker login
-      env:
-        DOCKER_USER: "sixtyfive0"
-        DOCKER_PASSWORD: "aKINLEYE1@"
-      run: |
-
-    - name: Build and push user Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: .
-          push: true
-          tags: sixtyfive0/udagram-api-feed:v2, sixtyfive0/udagram-api-user:v2, sixtyfive0/udagram-frontend:v2, sixtyfive0/udagram-reverseproxy:v2
-
