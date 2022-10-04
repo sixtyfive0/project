@@ -10,9 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    uses: actions/checkout@v3
   steps:
-  - uses: actions/checkout@v3
   - name: Build the Docker image
   - run: docker-compose -f docker-compose-build.yaml build --parallel
   - run: docker tag udagram-api-feed sixtyfive0/udagram-api-feed:v2
